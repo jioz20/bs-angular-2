@@ -1,0 +1,8 @@
+.form-control.ng-invalid.ng-touched
+{
+    border: 1px solid red;
+}
+
+input {
+    width: 200px;
+}

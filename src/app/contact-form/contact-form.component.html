@@ -1,0 +1,47 @@
+<p></p>
+<form #formContact="ngForm" (ngSubmit)="btnSubmit(formContact)">
+  <div class="from-group">
+    <label for="1">First Name</label>
+    <input type="text" minlength="3" pattern="[a-z]*" id="1" class="form-control" name="firstName" #firstName="ngModel"  ngModel required>
+    
+    <div *ngIf="firstName.touched && !firstName.valid" class="alert alert-danger float-right">
+      <div *ngIf="firstName.errors.required">First name is required</div>
+      <div *ngIf="firstName.errors.minlength">First name should be minimum {{firstName.errors.minlength.requiredLength}} characters</div>
+      <div *ngIf="firstName.errors.pattern">First name doesn't match the pattern</div>
+    </div>
+  </div>
+  
+  <div class="from-group">
+    <label for="1">Content</label>
+    <textarea name="content" id="" cols="30" rows="10" class="form-control" #content="ngModel" ngModel></textarea>
+  </div>
+  <p></p>
+  <div class="from-group">
+      <select multiple ngModel name="contactMethod" >
+        <option *ngFor="let method of contactMethods" [ngValue]="method">{{method.name}}</option>
+      </select>
+  </div>
+
+    <p></p>
+
+    <div class="from-group" *ngFor="let method of contactMethods">
+       <input type="radio" name="radioMethod" ngModel [value]="method.id"> {{method.name}}
+    </div>
+
+    <p></p>
+  <div class="form-group">
+      <label ><input type="checkbox" name="remember" ngModel>Remember me</label>
+  </div>
+  <div ngModelGroup="subjects" class="form-group">
+      <label ><input type="checkbox" name="Angular" [ngModel]="false" >Angular</label>
+      <label ><input type="checkbox" name="ReactJs" [ngModel]="false" >ReactJs</label>
+  </div>
+  <div class="form-group">
+      <button class="btn btn-outline-primary" [disabled]="!formContact.valid">Submit</button>
+  </div>
+
+  <p></p>
+  <code>{{formContact.value | json}}</code>
+</form>
+
+

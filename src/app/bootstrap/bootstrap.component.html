@@ -1,0 +1,38 @@
+<!-- ngContent -->
+<div class="card">
+  <div class="card-header">
+    <ng-content select=".header"></ng-content>
+  </div>
+  <div class="card-body">
+    <ng-content select=".body"></ng-content>
+  </div>
+</div>
+
+
+<!-- ngIf -->
+<div *ngIf="point.length > 0">
+  Yes
+</div>
+
+<div *ngIf="point.length == 0">
+  No
+</div>
+
+<hr>
+<!-- ngSwitchCase -->
+<ul class="nav nav-pills">
+  <li>
+    <a class="nav-link" [class.active]="viewMode == 'map'" (click)="viewMode = 'map'">Maps</a>
+  </li>
+  <li>
+    <a class="nav-link" [class.active]="viewMode == 'list'" (click)="viewMode = 'list'">List</a>
+  </li>
+</ul>
+
+
+
+<div [ngSwitch]="viewMode">
+  <div *ngSwitchCase="'map'">Maps View Content</div>
+  <div *ngSwitchCase="'list'">List View Content</div>
+  <div *ngSwitchDefault>Default View Content</div>
+</div>  
